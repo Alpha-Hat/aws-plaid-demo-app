@@ -182,7 +182,7 @@ export default function Layout() {
   const [apiMessage, setApiMessage] = useState(''); // State for the API message
   const [chartData, setChartData] = useState(null); // State for the chart data
   const [sessionId, setSessionId] = useState(''); // State to hold the session ID
-  const [showLoginModal, setShowLoginModal] = useState(false);
+ 
   const { route, signOut, user } = useAuthenticator((context) => [
     context.route,
     context.signOut,
@@ -195,12 +195,8 @@ export default function Layout() {
     navigate('/login');
   }
 
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    // Perform login logic (e.g., API call)
-    console.log('Login form submitted');
-    setShowLoginModal(false); // Close the modal on successful login
-  };
+
+
   return (
   
     <div className="App d-flex flex-row vh-100">
@@ -225,38 +221,6 @@ export default function Layout() {
             />
           </div>
 
-          {/* Login Modal */}
-          {showLoginModal && (
-            <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog">
-              <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title">Login</h5>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      onClick={() => setShowLoginModal(false)}
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body">
-                    <form onSubmit={(e) => handleLoginSubmit(e)}>
-                      <div className="mb-3">
-                        <label htmlFor="username" className="form-label">Username</label>
-                        <input type="text" id="username" className="form-control" placeholder="Enter your username" />
-                      </div>
-                      <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Password</label>
-                        <input type="password" id="password" className="form-control" placeholder="Enter your password" />
-                      </div>
-                      <button type="submit" className="btn btn-primary">Login</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
           {/* SituationOutput Component */}
           <div className="card shadow-sm p-4">
             <h2 className="text-primary">Situation Output</h2>
@@ -274,11 +238,7 @@ export default function Layout() {
             { /*<Heading level={3}>Signin to Get the Support You Deserve</Heading>*/}
             <View style={{backgroundColor: 'blue'}} >
               <Heading level={3}>Signin For A Personalized Review</Heading>
-              {route !== 'authenticated' ? (
-                <Button onClick={() => setShowLoginModal(true)}>Login</Button>
-              ) : (
-                <Button onClick={() => logOut()}>Logout</Button>
-              )}
+              {route === 'authenticated' ? `Welcome ${user.signInDetails?.loginId}`: ''}
             </View> 
             <Outlet />
 
