@@ -198,21 +198,26 @@ export default function Layout() {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     // Perform login logic (e.g., API call)
-    console.log('Login form submitted');
+    navigate('/login');
     setShowLoginModal(false); // Close the modal on successful login
   };
+
+ // const handleCreateAccountClick = () => {
+ //   navigate('/login');
+    // Replace with actual redirection or action for account creation
+  //};
   return (
-  
-    <div className="App d-flex flex-row vh-100">
+    
+    <div className="App d-flex #363CA3 flex-row vh-100">
         {/* Logo Container on the Left */}
-        <div className="App-logo text-white p-4 d-flex flex-column justify-content-center" style={{ width: '30%' }}>
+        <div className="App-logo #363CA3 p-4 d-flex flex-column justify-content-center" style={{ width: '20%' }}>
           <img src={logo} className="App-logo mb-3" alt="logo" />
-          <p className="fs-4">Take Charge of Your Own Financial Security</p>
-          <p className="fs-4">Use our tools to understand and optimize your financial decisions</p>
+          
+          <p className="fs-3" style={{ padding: '75px 5px'} } >Take Charge of Your Own Financial Security</p>
         </div>
 
         {/* Main Content on the Right */}
-        <div className="d-flex flex-column flex-grow-1 gap-4 p-4">
+        <div className="d-flex flex-column  #363CA3 flex-grow-1 gap-4 p-4">
           {/* AddSituation Component */}
           <div className="card shadow-sm p-4">
             <h2 className="text-primary">Add Your Financial Situation</h2>
@@ -250,7 +255,7 @@ export default function Layout() {
                         <input type="password" id="password" className="form-control" placeholder="Enter your password" />
                       </div>
                       <button type="submit" className="btn btn-primary">Login</button>
-                    </form>
+                      </form>
                   </div>
                 </div>
               </div>
@@ -263,24 +268,20 @@ export default function Layout() {
             <SituationOutput apiMessage={apiMessage} />
           </div>
           <div className="card shadow-sm p-4">   
-            <nav>
-              <Button onClick={() => navigate('/')}>Home</Button>
-              {route !== 'authenticated' ? (
-                <Button onClick={() => navigate('/login')}>Login</Button>
-              ) : (
-                <Button onClick={() => logOut()}>Logout</Button>
-              )}
-            </nav>
+
             { /*<Heading level={3}>Signin to Get the Support You Deserve</Heading>*/}
-            <View style={{backgroundColor: 'blue'}} >
-              <Heading level={3}>Signin For A Personalized Review</Heading>
+            <View style={{backgroundColor: 'white'}} >
+              <Heading level={3}>Sign in For A Personalized Review</Heading>
               {route !== 'authenticated' ? (
                 <Button onClick={() => setShowLoginModal(true)}>Login</Button>
+                
               ) : (
                 <Button onClick={() => logOut()}>Logout</Button>
+                
               )}
+              
             </View> 
-            <Outlet />
+            <Outlet/>
 
           </div> 
           {/* InvestmentChart Component */}
@@ -289,7 +290,7 @@ export default function Layout() {
               <InvestmentChart chartData={chartData} />
             
             {/* Small Print Disclaimer */}
-            <p className="text-muted mt-3" style={{ fontSize: '0.9rem' }}>
+            <p className="text-muted mt-2" style={{ fontSize: '0.9rem' }}>
             <strong>Disclaimer:</strong> The investment outcomes presented are hypothetical and based on assumptions.
             Actual results may vary.
             </p>

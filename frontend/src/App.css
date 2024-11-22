@@ -35,6 +35,8 @@ body {
 .App-logo {
   height: 60vmin;
   pointer-events: none;
+  margin-top: 40px;
+  color: #363CA3 !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {
